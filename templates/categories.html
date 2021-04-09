@@ -19,11 +19,10 @@
 <!--                            </div>-->
                         </div>
                         <div class="row">
-                            {% for film in films %}
+                            {% for film in page_obj %}
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="product__item">
                                     <div class="product__item__pic set-bg" data-setbg="{{ film.image.url }}">
-                                        <div class="ep">18 / 18</div>
                                     </div>
                                     <div class="product__item__text">
                                         <h5><a href="{% url 'detail' film.pk %}">{{ film.title}}</a></h5>
@@ -41,6 +40,7 @@
 <div class="product__pagination">
     {% for p in page_obj.paginator.page_range %}
         <a href="?page={{p}}" class="current-page">{{p}}</a>
-    </div>
+
 {% endfor %}
+     </div>
 {% endblock %}

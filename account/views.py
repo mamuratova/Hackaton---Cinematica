@@ -18,7 +18,7 @@ class RegisterView(SuccessMessageMixin, CreateView):
 
 
 class LogoutView(LogoutView):
-    template_name = 'login.html'
+    template_name = 'account/login.html'
 
 
 class SignInView(LoginView):

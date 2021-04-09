@@ -4,7 +4,6 @@
     <h1>Are you sure?</h1>
         {% csrf_token %}
 <button type="submit" class="btn btn-danger">Yes</button>
-<!--    <a href="{% url 'detail' film.pk %}"> <button class="btn btn-warning">No</button></a>-->
 
 </form>
     <a href="{% url 'detail' film.pk %}"> <button class="btn btn-warning">No</button></a>

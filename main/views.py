@@ -10,13 +10,13 @@ from django.core.paginator import Paginator
 
 
 def index(request):
-    films = Films.objects.all()
+    films = Films.objects.order_by('pk')
     categories = Genre.objects.all()
     return render(request, 'index.html', locals())
 
 
 def category_detail(request, slug):
-    categories = Genre.objects.all()
+    categories = Genre.objects.order_by('pk')
     categori = Genre.objects.get(slug=slug)
     films = Films.objects.filter(genre__slug=slug)
     paginator = Paginator(films, 2)
@@ -29,6 +29,7 @@ def film_detail(request, pk):
     film = Films.objects.get(pk=pk)
     comment_list = film.comment_set.order_by('pk')
     return render(request, 'details.html', locals())
+
 
 def watch(request, pk):
     film = Films.objects.get(pk=pk)
@@ -63,8 +64,7 @@ def delete(request, pk):
     film = get_object_or_404(Films, pk=pk)
     if request.method == 'POST':
         film.delete()
-        messages.add_message(request, messages.SUCCESS, 'Successfully deleted!')
-        return redirect('category')
+        return redirect('home')
     return render(request, 'delete.html', locals())
 
 
@@ -108,14 +108,14 @@ def item_clear(request, id):
     cart = Cart(request)
     product = Films.objects.get(id=id)
     cart.remove(product)
-    return redirect("cart_detail")
+    return redirect("favorities")
 
 
 @login_required
 def cart_clear(request):
     cart = Cart(request)
     cart.clear()
-    return redirect("cart_detail")
+    return redirect("favorities")
 
 
 @login_required()

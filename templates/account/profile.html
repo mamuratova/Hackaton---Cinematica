@@ -1,7 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
-            <h1>{{ request.user.username }}</h1>
-        <h2>{{ request.user}}</h2>
-        <h3>{{ request.user.date_joined}}</h3>
+<br>
+<br>
+            <h1 style="color: white;">{{ request.user.username }}</h1>
+<br>
+<br>
+        <h2 style="color: white;">{{ request.user }}</h2>
+<br>
+<br>
+        <h3 style="color: white;">{{ request.user.date_joined}}</h3>
 
 {% endblock %}
