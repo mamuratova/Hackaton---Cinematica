@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+    <!-- Normal Breadcrumb Begin -->
+    <section class="normal-breadcrumb set-bg" data-setbg="img/normal-breadcrumb.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="normal__breadcrumb__text">
+                        <h2>Sign Up</h2>
+                        <p>Welcome to the official site Cinematica</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Normal Breadcrumb End -->
+
+    <!-- Signup Section Begin -->
+    <section class="signup spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="login__form">
+                        <h3>Sign Up</h3>
+                        <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" >
+    Log in
+    </button>
+
+</form>
+                        <h5>Already have an account? <a href="{% url 'login' %}">Sign up</a></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{%endblock%}

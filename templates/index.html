@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <!-- Hero Section Begin -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero__slider owl-carousel">
+                <div class="hero__items set-bg" data-setbg="{% static 'imgg/c5.jpg' %}">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="hero__text">
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+
+                                <br>
+                                <br>
+                                <a href="#"><span>Creators: Winx</span> </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero__items set-bg" data-setbg="{% static 'imgg/c4.jpg' %}">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="hero__text">
+
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+
+                                <a href="#"><span>Creators: Winx</span> </a>
+
+<!--                                <a href="#"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero__items set-bg" data-setbg="{% static 'imgg/c8.jpg' %}">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="hero__text">
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+
+                                <a href="#"><span>Creators: Winx</span> </a>
+
+<!--                                <a href="#"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero__items set-bg" data-setbg="{% static 'imgg/c2.jpg' %}">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="hero__text">
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+
+                                <a href="#"><span>Creators: Winx</span> </a>
+
+<!--                                <a href="#"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero__items set-bg" data-setbg="{% static 'imgg/c1.jpg' %}">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="hero__text">
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+
+                                <br>
+                                <br>
+                                <br>
+                                <a href="#"><span>Creators: Winx</span> </a>
+
+<!--                                <a href="#"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero__items set-bg" data-setbg="{% static 'imgg/c7.jpg' %}">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="hero__text">
+                                <br>
+                                <br>
+                                <br>
+
+                                <br>
+                                <br>
+                                                                <a href="#"><span>Creators: Winx</span> </a>
+
+<!--                                <a href="#"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Hero Section End -->
+
+    <!-- Product Section Begin -->
+    <section class="product spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="trending__product">
+                        <div class="row">
+                            <div class="col-lg-8 col-md-8 col-sm-8">
+                                <div class="section-title">
+                                    <h4>Recently</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            {% for film in films %}
+                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                <div class="product__item">
+                                    <div class="product__item__pic set-bg" data-setbg="{{ film.image.url }}">
+                                        <div class="ep">18 / 18</div>
+                                    </div>
+                                    <div class="product__item__text">
+                                        <h5><a href="{% url 'detail' film.pk %}">{{ film.title}}</a></h5>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+
+{% endblock %}

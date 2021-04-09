@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<form style="color: #fff;" method="post" enctype="multipart/form-data">
+    {{ film_form.as_p}}
+        {% csrf_token %}
+<button type="submit" class="btn btn-secondary">Add</button>
+</form>
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<section class="product spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="trending__product">
+                        <div class="row">
+                            <div class="col-lg-8 col-md-8 col-sm-8">
+                                <div class="section-title">
+                                    <h4>{{categori}}</h4>
+                                </div>
+                            </div>
+<!--                            <div class="col-lg-4 col-md-4 col-sm-4">-->
+<!--                                <div class="btn__all">-->
+<!--                                    <a href="#" class="primary-btn">View All <span class="arrow_right"></span></a>-->
+<!--                                </div>-->
+<!--                            </div>-->
+                        </div>
+                        <div class="row">
+                            {% for film in films %}
+                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                <div class="product__item">
+                                    <div class="product__item__pic set-bg" data-setbg="{{ film.image.url }}">
+                                        <div class="ep">18 / 18</div>
+                                    </div>
+                                    <div class="product__item__text">
+                                        <h5><a href="{% url 'detail' film.pk %}">{{ film.title}}</a></h5>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+
+<div class="product__pagination">
+    {% for p in page_obj.paginator.page_range %}
+        <a href="?page={{p}}" class="current-page">{{p}}</a>
+    </div>
+{% endfor %}
+{% endblock %}

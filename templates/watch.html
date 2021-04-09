@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <section class="anime-details spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="anime__video__player">
+                        <video id="player" playsinline controls data-poster="./videos/anime-watch.jpg">
+                            <source src="{{ film.video.url }}" type="video/mp4" />
+                            <track kind="captions" label="English captions" src="#" srclang="en" default />
+                        </video>
+                    </div>
+                </div>
+            </div>
+ <div class="row">
+                    <div class="col-lg-8 col-md-8">
+                        <div class="anime__details__review">
+                            <div class="section-title">
+                                <h5>Reviews</h5>
+                            </div>
+
+{% if comment_list %}
+			{% for comment in comment_list %}
+
+                            <div class="anime__review__item">
+                                <div class="anime__review__item__pic">
+                                    <img src="{% static 'imgg/default.jpg' %}" alt="">
+                                </div>
+                                <div class="anime__review__item__text">
+                                    <h6>{{comment.author}} <span>{{comment.datetime}}</span></h6>
+                                    <p>{{comment.comment_text}}</p>
+                                </div>
+                            </div>
+
+{% endfor %}
+{% else %}
+<p style="margin-top: center;">Комментарий нет! Будьте первым!</p>
+{% endif %}
+
+
+                        <div class="anime__details__form">
+                            <div class="section-title">
+                                <h5>Your Comment</h5>
+                            </div>
+                            <form method="post" action="{% url 'leave_comment' film.pk %}">
+                                {% csrf_token %}
+                                <textarea placeholder="Your Comment"></textarea>
+                                		<li><input type="submit" value="Send" class="primary" /></li>
+
+                            </form>
+                        </div>
+                    </div>
+                    </div>
+            </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

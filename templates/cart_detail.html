@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load cart_tag %}
+ <div class="row">
+          {% for key, film in request.session.cart.items %}
+          <div class="col-lg-4 col-md-6 col-sm-6">
+              <div class="product__item">
+                  <div class="product__item__pic set-bg" data-setbg="{{ film.image }}"></div>
+                  <div class="product__item__text">
+                      <h5><a href="{% url 'detail' film.product_id %}">{{ film.name }}</a></h5>
+                  </div>
+                      <div class="anime__details__btn"> <a href="{% url 'item_clear' film.product_id %}" class="watch-btn"><span>Clear</span> </a>
+                      </div>
+                      </div>
+          </div>
+          {% endfor %}
+      </div>
+    <div class="anime__details__btn"> <a href="{% url 'cart_clear' %}" class="watch-btn"><span>Cart Clear</span> </a>
+
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <section class="anime-details spad">
+        <div class="container">
+            <div class="anime__details__content">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="anime__details__pic set-bg" data-setbg="{{ film.image.url }}">
+                        </div>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="anime__details__text">
+                            <div class="anime__details__title">
+                                <h3>{{film.title}}</h3>
+                            <p>{{film.description}}</p>
+                            <div class="anime__details__widget">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6">
+                                        <ul>
+                                            <li><span>Date aired:</span> {{film.year}}</li>
+                                            <li><span>Time:</span> {{film.time}} min</li>
+                                            <li><span>Quality:</span> HD</li>
+                                          <li><span>Producer:</span> {{film.producer}}</li>
+                                             <li><span>Country:</span> {{film.country}}</li>
+                                        </ul>
+                                </div>
+                            </div>
+                            <div class="anime__details__btn">
+                                <a href="{% url 'cart_add' film.pk %}" class="follow-btn"><i class="fa fa-heart-o"></i> Follow</a>
+                                <a href="{% url 'watch' film.pk %}" class="watch-btn"><span>Watch Now</span> <i
+                                    class="fa fa-angle-right"></i></a>
+                                </div>
+                                {% if request.user.is_staff and request.user.is_superuser and request.user.is_authenticated %}
+                                <a href="{% url 'update' film.pk %}"><img src="https://img.icons8.com/material-sharp/30/000000/edit--v1.png"/></a>
+                                <a href="{% url 'delete' film.pk %}"><img src="https://img.icons8.com/material/30/000000/filled-trash.png"/></a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+
+                <div class="row">
+                    <div class="col-lg-8 col-md-8">
+                        <div class="anime__details__review">
+                            <div class="section-title">
+                                <h5>Reviews</h5>
+                            </div>
+
+{% if comment_list %}
+			{% for comment in comment_list %}
+
+                            <div class="anime__review__item">
+                                <div class="anime__review__item__pic">
+                                    <img src="{{ request.user.image.url }}" alt="">
+                                </div>
+                                <div class="anime__review__item__text">
+                                    <h6>{{comment.author}} <span>{{comment.datetime}}</span></h6>
+                                    <p>{{comment.comment_text}}</p>
+                                </div>
+                            </div>
+
+{% endfor %}
+{% else %}
+<p style="margin-top: center;">Комментарий нет! Будьте первым!</p>
+{% endif %}
+
+
+                        <div class="anime__details__form">
+                            <div class="section-title">
+                                <h5>Your Comment</h5>
+                            </div>
+                            <form method="post" action="{% url 'leave_comment' film.pk %}">
+                                {% csrf_token %}
+                                <textarea name="comment" placeholder="Send Comment"></textarea>
+                                		<li><input type="submit" value="Send" class="primary" /></li>
+
+                            </form>
+                        </div>
+                    </div>
+                    </div>
+            </div>
+        </section>
+
+{% endblock %}
